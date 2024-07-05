@@ -51,6 +51,35 @@
             <?php endforeach ?>
         </tbody>
     </table>
+
+    <h1>Filmovi za otpis</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Naslov</th>
+                <th>Godina</th>
+                <th>Zanr</th>
+                <th>Tip Filma</th>
+                <th>Uredi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($moviesDiscard as $movie): ?>
+                <tr>
+                    <td><?= $movie['id'] ?></td>
+                    <td style="font-weight:bold"><?= $movie['naslov'] ?></td>
+                    <td><?= $movie['godina'] ?></td>
+                    <td><?= $movie['zanr'] ?></td>
+                    <td><span class="badge text-bg-primary float-middle"><?= $movie['tip_filma']?></span></td>
+                    <td>
+                        <a href="#" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Movie"><i class="bi bi-pencil"></i></a>
+                        <button class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete Movie"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+            <?php endforeach ?>
+        </tbody>
+    </table>
 </main>
 
 <?php include_once 'partials/footer.php' ?>

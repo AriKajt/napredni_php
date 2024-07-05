@@ -17,5 +17,6 @@ $genres = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 mysqli_close($connection);
 
+$title = "Zanrovi - Admin";
 
 require 'genres.view.php';

@@ -19,6 +19,7 @@ $members = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 mysqli_close($connection);
 
+$title = "Clanovi - Admin";
 
 require 'members.view.php';
 
