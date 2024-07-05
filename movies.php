@@ -32,7 +32,12 @@ if (mysqli_num_rows($result) === 0) {
 
 $movies = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-mysqli_close($connection);
+foreach ($movies as $key => $movie)
+{
+    $mediji[$key] = explode(',', $movie['medij']);
+    $movies[$key]['medij'] = $mediji[$key];
+}
 
+mysqli_close($connection);
 
 require 'movies.view.php';
