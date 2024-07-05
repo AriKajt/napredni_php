@@ -18,20 +18,27 @@
             <?php foreach ($movies as $movie): ?>
                 <tr>
                     <td><?= $movie['id'] ?></td>
-                    <td><?= $movie['naslov'] ?></td>
+                    <td style="font-weight:bold"><?= $movie['naslov'] ?></td>
                     <td><?= $movie['godina'] ?></td>
                     <td><?= $movie['zanr'] ?></td>
                     <td>
                     <?php foreach ($movie['medij'] as $medij): ?>
                         <?php 
-                            $curMedij = match ($medij) {
+                            /*$medijBG = match ($medij) {
                                 'DVD' => 'badge text-bg-success',
                                 'Blu-ray' => 'badge text-bg-info',
                                 'VHS' => 'badge text-bg-warning',
                                 default => 'badge text-bg-secondary'
+                            };*/
+
+                            $medijIcon = match ($medij) {
+                                'DVD' => 'disc-fill text-warning',
+                                'Blu-ray' => 'disc text-primary',
+                                'VHS' => 'cassette-fill text-success',
+                                default => 'disc text-secondary'
                             }; 
                         ?>
-                        <span class="<?= $curMedij ?> float-start"><?= $medij ?></span>
+                        <span class="badge text-bg-light float-start"><i class="bi bi-<?= $medijIcon ?> me-1"></i><?= $medij ?></span>
                     <?php endforeach ?>
                     </td>
         
