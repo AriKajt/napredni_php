@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class="page-wrapper d-flex h-100">
+    <div class="page-wrapper d-flex height:100%">
 
         <?php include_once 'sidebar.php' ?>
 
