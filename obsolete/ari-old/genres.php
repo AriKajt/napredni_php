@@ -19,4 +19,5 @@ mysqli_close($connection);
 
 $title = "Zanrovi - Admin";
 
+var_dump($_SERVER);die();
 require 'genres.view.php';

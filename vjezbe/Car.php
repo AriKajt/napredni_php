@@ -1,36 +1,39 @@
 <?php
 
-// declare(strict_types=1); 
-//ovo bi znacilo da ako smo npr. deklarirali da weight mora biti string, ne mozemo upisati int; bez ovog ce php automatski pretvorit int u string
+namespace Vjezbe;
 
-Class Car {
+use \Countable;
 
-    private string $make;
+
+class Car extends Vehicle implements Driveable, Countable
+{
+
+    private string $marka;
     private string $model;
-    private string $fuel;
-    private int $weight;
+    protected string $gorivo;
 
-    private function belongsTo()
+    public function __construct(string $marka, string $model, string $gorivo, string $tip, string $kategorija, int $masa)
     {
+        $this->marka = $marka;
+        $this->model = $model;
+        $this->gorivo = $gorivo;
 
+        parent::__construct($tip, $kategorija, $masa);
     }
 
-    public function getFullName() : string
+    public function drives()
     {
-        return "$this->make - $this->model";
+        return 'It drives';
     }
 
-    // getter metoda - vraca vrijednost privatnog svojstva izvan klase
-    public function getMake(): string
+    public function count(): int
     {
-        return $this->make;
+        return 1;
     }
 
-    // setter metoda - sluzi za postavljanje vrijednosti privatnog svojstva izvan klase
-    public function setMake(string $make)
+    public function getMarka()
     {
-        $this->make = $make;
-        return $this;
+        return $this->marka;
     }
 
     public function getModel(): string
@@ -38,59 +41,18 @@ Class Car {
         return $this->model;
     }
 
-    public function setModel(string $model)
+    public function getGorivo(): string
     {
-        $this->model = $model;
-        return $this;
+        return $this->gorivo;
     }
 
-    public function getFuel(): string
+    public function getFullName()
     {
-        return $this->fuel;
+        return "$this->marka - $this->model";
     }
 
-    public function setFuel(string $fuel)
-    {
-        $this->fuel = $fuel;
-        return $this;
-    }
-
-    public function getWeight() : int
-    {
-        return $this->weight;
-    }
-
-    public function setWeight(int $weight)
-    {
-        $this->weight = $weight;
-        return $this;
-    }
-
-    public function toArray()
-    {
-        return [
-            'make' => $this->make,
-            'model' => $this->model,
-            'fuel' => $this->fuel,
-            'weight' => $this->weight
-        ];
-    }
 }
 
-$teslaS = new Car();
+$car = new Car('Tesla', 'Model S', 'Electric', 2300, 'Cestovno', 'B');
 
-$teslaS->setMake('Tesla');
-$teslaS->setModel('Model S');
-$teslaS->setFuel('electric');
-$teslaS->setWeight(2300);
 
-//ili ovako, moguce zbog "return $this" u svim setter metodama, jer se svaka strelica onda nadovezuje na objekt (vraceni $this):
-/*
-$teslaS
-    ->setMake('Tesla')
-    ->setModel('Model S')
-    ->setFuel('electric')
-    ->setWeight(2300);
-*/
-
-echo $teslaS->getFullName();
